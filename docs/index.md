@@ -1,5 +1,4 @@
 # AWS Developer Associate Notes
 
 ## Topics
-- [S3](s3.md)
-- [IAM](iam.md)
+- [Amazon S3](S3.md)

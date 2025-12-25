@@ -2,6 +2,6 @@ site_name: AWS Developer Associate Notes
 theme:
   name: material
   palette:
-    primary: indigo  # Header/navbar color
-    accent: blue     # Links and accents
+    primary: light blue  # Header/navbar color
+    accent: purple     # Links and accents
   

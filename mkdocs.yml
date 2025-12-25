@@ -4,4 +4,8 @@ theme:
   palette:
     primary: light blue  # Header/navbar color
     accent: purple     # Links and accents
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
   

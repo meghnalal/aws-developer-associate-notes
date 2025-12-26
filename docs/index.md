@@ -6,3 +6,4 @@ The most important thing is that aws loves Lambda DynamoDB
 - [Amazon S3](S3.md)
 - [Amazon Lambda](Lambda.md)
 - [Amazon EC2](EC2.md)
+- [Amazon DynamoDB](DynamoDB.md)

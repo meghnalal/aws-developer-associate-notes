@@ -7,3 +7,6 @@ The most important thing is that aws loves Lambda DynamoDB
 - [Amazon Lambda](Lambda.md)
 - [Amazon EC2](EC2.md)
 - [Amazon DynamoDB](DynamoDB.md)
+- [Amazon RDS & Aurora](RDS_Aurora.md)
+- [Amazon API Gateway](API_Gateway.md)
+- [Amazon API Security](Security.md)

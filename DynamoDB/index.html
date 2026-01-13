@@ -1,0 +1,879 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../CloudFormation/">
+      
+      
+        <link rel="next" href="../EC2/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>DynamoDB - AWS Developer Associate Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AWS Developer Associate Notes" class="md-header__button md-logo" aria-label="AWS Developer Associate Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AWS Developer Associate Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              DynamoDB
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AWS Developer Associate Notes" class="md-nav__button md-logo" aria-label="AWS Developer Associate Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AWS Developer Associate Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS Developer Associate Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API_Gateway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Gateway
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AWS_Storage_Extra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS Storage Extra
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CloudFormation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS CloudFormation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DynamoDB
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../EC2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EC2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../EC2_3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EC2 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Encryption/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Encryption
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lambda/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lambda
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RDS_Aurora/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RDS Aurora
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../S3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../VPC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VPC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>DynamoDB</h1>
+
+<div class="admonition example">
+<p class="admonition-title">Topics according to exam</p>
+<p>For AWS Developer exam: the main thing to know is:</p>
+<ul>
+<li>Calculate RCU WCU</li>
+<li>Dax</li>
+<li>LSI and GSI </li>
+<li>Query and Scan</li>
+</ul>
+<p>For AWS Solution Architect exam: the main thing to know is:</p>
+<ul>
+<li>DAX</li>
+<li>There is way more question on RDS</li>
+</ul>
+</div>
+<p><strong><span style="color: #0057FF;">Keys: </span></strong></p>
+<p>Primary Key must be there:</p>
+<ul>
+<li>Simple Primary Key (Partition Key only): Also called hash key must be unique </li>
+<li>Composite Primary Key (Partition Key only + sort key) → combined must be unique
+Here the combination must be unique 
+Item by same partition key are sorted together sorted by <em>sort key</em> </li>
+</ul>
+<p>Example: UserID (partition) + OrderDate (sort) in an Orders table 
+The partition key determines which partition stores the data. </p>
+<p><em>Items with the same partition key are stored together</em></p>
+<p><strong><span style="color: #0057FF;">LSI: </span></strong></p>
+<p>At table creation can not be added later<br />
+Uses <strong>same partition key</strong> but different sort key <br />
+5 limit LSI<br />
+<strong>Strongly consistent</strong> </p>
+<div class="admonition note">
+<p class="admonition-title">Example</p>
+<ul>
+<li>exam loves to ask if you can use LSI after table is created
+<strong>Table:</strong> Partition Key \= <code>UserID</code>, Sort Key \= <code>OrderDate</code><br />
+<strong>LSI:</strong> Partition Key \= <code>UserID</code>, Sort Key \= <code>OrderStatus</code></li>
+</ul>
+<p>Now you can query all orders for a user sorted by status, not just by date.</p>
+</div>
+<p><strong><span style="color: #0057FF;">GSI: </span></strong>
+Can be created anytime up to 20 GSI<br />
+Can have a different partition key AND different sort key<br />
+<strong>Eventually consistent</strong> reads only (no strongly consistent)</p>
+<div class="admonition note">
+<p class="admonition-title">Example</p>
+<p><strong>Table:</strong> Partition Key \= <code>UserID</code>, Sort Key \= <code>OrderDate</code><br />
+<strong>GSI:</strong> Partition Key \= <code>OrderStatus</code>, Sort Key \= <code>OrderDate</code><br />
+<strong>Exam Tip:</strong> GSI = "G" for "Global flexibility" - different keys, added anytime, separate throughput</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Questions to keep in mind</p>
+<p>"Need to query by a different attribute after table is created" → Use GSI<br />
+"Need to query same partition but different sort order" → Use LSI (if at creation time) 
+"Running out of capacity on queries" → GSI has separate throughput; LSI shares with table 
+"Need strongly consistent reads on secondary index" → Only LSI supports this<br />
+"Sparse index" (only some items have the attribute) → Both LSI and GSI support this (items without the index key won't appear in the index)<br />
+"Write throttling on GSI" → Can throttle writes to the main table (GSI writes must complete)</p>
+</div>
+<p><strong><span style="color: #0057FF;">Capacity: </span></strong></p>
+<p>Provisioned capacity:</p>
+<p><strong>Strongly consistent</strong></p>
+<p><em>1 RCU gives you 1 eventually consistent reads of 4KB each per second</em></p>
+<p><code>If you need to read 10/s each item 8KB strongly consistent</code> <br />
+<code>For strongly consistent 1=4KB so 2 for 8KB</code> <br />
+<code>I need to read 10 Item therefore 2x10item = 20RCU</code></p>
+<ul>
+<li>Eventually consistent:</li>
+</ul>
+<p><em>1 RCU gives you 2 eventually consistent reads of 4KB each per second</em></p>
+<p><code>Do the same calculation but half it</code>      <br />
+<code>I need to read 10 Item therefore 2x10item = 20RCU /2 =10RCU</code><br />
+<code>Eventually consistent reads same calculation but half it</code> </p>
+<div class="admonition question">
+<p class="admonition-title">Examples</p>
+<ul>
+<li>
+<p>Read 50 items per second, each item is 2KB, strongly consistent.    <br />
+1RCU is enough so 50 x 1RCU = =50RCUs </p>
+</li>
+<li>
+<p>Read 50 items per second, each item is 2KB, eventually consistent.<br />
+1RCU is enough so 50 x 1RCU = =50RCUs/2 = 25RCUs </p>
+</li>
+<li>
+<p>Read 20 items per second, each is 6KB, strongly consistent.<br />
+2RCUs = 20x2= 40RCus`  </p>
+</li>
+</ul>
+</div>
+<p><strong>On-Demand:</strong></p>
+<ul>
+<li>Pay per request </li>
+<li>Good for unpredictable workloads</li>
+</ul>
+<p><strong>DynamoDB Stream:</strong><br />
+* 24hrs Retention</p>
+<p><strong><span style="color: #0057FF;">Operation: </span></strong></p>
+<p><strong>Write Operations</strong></p>
+<ul>
+<li><code>PutItem</code> - Create or replace entire item- doesn't exist create a new one or overrides  </li>
+<li><code>UpdateItem</code> - Update specific attributes if it exist otherwise create item  </li>
+<li><code>DeleteItem</code> - Remove item  </li>
+<li><code>BatchWriteItem</code> - Up to 25 items (max 16MB total)</li>
+</ul>
+<p><strong>Read Operations</strong></p>
+<ul>
+<li><code>GetItem</code> - Read single item by primary key  </li>
+<li><code>Query</code> - Read items with same partition key (can filter by sort key)  </li>
+<li><code>Scan</code> - Read entire table (expensive, avoid in production!)  </li>
+<li><code>BatchGetItem</code> - Up to 100 items (max 16MB)</li>
+</ul>
+<p><strong><span style="color: #0057FF;">Query vs Scan: </span></strong></p>
+<p><strong>Query:</strong></p>
+<ul>
+<li>Specify Partition key </li>
+<li>Return sorted result  </li>
+<li>Efficient- only reads matching items` </li>
+<li>Should prefer this</li>
+</ul>
+<p><strong>Scan:</strong></p>
+<ul>
+<li>Reads every Item in table  </li>
+<li>Expensive  </li>
+<li>Parallel scan  </li>
+<li>Avoid in prod</li>
+</ul>
+<p><strong><span style="color: #0057FF;">DAX: </span></strong></p>
+<ul>
+<li>Fully managed caching service  </li>
+<li>Fast   </li>
+<li>Good for read heavy workloads</li>
+</ul>
+<p><strong><span style="color: #0057FF;">Global Table: </span></strong></p>
+<ul>
+<li>Multi region  </li>
+<li>Less then 1s replication  </li>
+<li>Active-active set up</li>
+</ul>
+<p><strong>Point in Time recovery TTL:</strong></p>
+<ul>
+<li>Restore to any point in last 35 days</li>
+</ul>
+<p><strong>Backup:</strong></p>
+<ul>
+<li>Manual backups  </li>
+<li>Can restore the same to different region</li>
+</ul>
+<p><strong><span style="color: #0057FF;">Conditional writes: </span></strong></p>
+<ul>
+<li>Do a write operation if xyz  </li>
+<li>This prevents race conditions where multiple users/processes might try to update the same item simultaneously.</li>
+</ul>
+<p>The operation throws a <code>ConditionalCheckFailedException</code>and:</p>
+<ul>
+<li>No changes are made to the item  </li>
+<li>You still consume Write Capacity Units (WCUs)! </li>
+<li>Your application should catch this exception and handle it (retry, notify user, etc.)</li>
+</ul>
+<p><strong><span style="color: #0057FF;">Security: </span></strong></p>
+<p><strong>Encryption</strong></p>
+<ul>
+<li>Encryption at rest (enabled by default)  </li>
+<li>Encryption in transit (HTTPS)  </li>
+<li>AWS owned, AWS managed, or Customer managed KMS keys</li>
+</ul>
+<p><strong><code>TransactWriteItems</code></strong> and <strong><code>BatchWriteItem:</code></strong></p>
+<ul>
+<li>Writes directly to DynamoDB tables  </li>
+<li>Works on regular tables, global tables  </li>
+<li>Can write to multiple tables in one transaction  </li>
+<li>Does NOT write to DynamoDB Streams  </li>
+<li>Has nothing to do with consuming streams</li>
+</ul>
+<p><strong><code>TransactWriteItems:</code></strong></p>
+<ul>
+<li>All-or-nothing  </li>
+<li>ACID  </li>
+<li>Conditional Logic  </li>
+<li>2WCU  </li>
+<li>Put, Update, Delete, ConditionCheck</li>
+</ul>
+<p><strong><code>​​BatchWriteItem</code></strong></p>
+<ul>
+<li>Some can succeed, others can fail  </li>
+<li>Not acid  </li>
+<li>Put, Delete</li>
+</ul>
+<p><strong><span style="color: #0057FF;">DynamoDB stream data: </span></strong></p>
+<p>Stream the data in an Amazon DynamoDB table. Enable DynamoDB Streams, and configure an AWS Lambda function with <code>AmazonDynamoDBFullAccess</code> permissions to perform anonymization on newly written items</p>
+<p>DynamoDB Streams processes changes to already written data, meaning unanonymized PII would be stored in DynamoDB before anonymization</p>
+<p><strong><span style="color: #0057FF;">Hot Partition:</span></strong></p>
+<p>Basically when one partition key is being updated too often so bad key partition key choosing</p>
+<ul>
+<li>
+<p>Implement error retries and exponential backoff.</p>
+</li>
+<li>
+<p>Refactor your application to distribute your read and write operations as evenly as possible across your table.</p>
+</li>
+</ul>
+<p><strong><span style="color: #0057FF;">Optimistic locking:</span></strong></p>
+<p><strong>What is Optimistic Locking?</strong></p>
+<p>Optimistic locking <em>assumes conflicts are rare</em> and only checks for conflicts at write time.- <em>Conditional updates</em> - "prevent update if attribute has certain value"</p>
+<p><strong>Why NOT Pessimistic Locking?</strong></p>
+<p><em>DynamoDB doesn't support native locks</em></p>
+<p><strong><span style="color: #0057FF;">Limit:</span></strong></p>
+<p>Item in a Amazon DynamoDB table is 400 KB</p>
+<div class="admonition question">
+<p class="admonition-title">Common Exam Scenarios</p>
+<ul>
+<li>Need shared data across regions? → Global Tables</li>
+<li>Need caching for reads? → DAX</li>
+<li>Need to trigger actions on changes? → DynamoDB Streams + Lambda  </li>
+<li>Need to query by different attributes? → GSI  </li>
+<li>Scan taking too long? → Use Query with proper keys or GSI  </li>
+<li>Running out of capacity? → Switch to On-Demand or increase provisioned capacity  </li>
+<li>Need ACID transactions? → Use TransactWriteItems/TransactGetItems  </li>
+<li>You need to add an index to query by a new attribute on an existing table. What should you use? →  GSI - because LSI can only be created at table creation time! </li>
+<li>Different partition key? → GSI </li>
+<li>Same partition key, different sort order? → LSI </li>
+</ul>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Important info on Backups</p>
+<ul>
+<li>Use the DynamoDB on-demand backup capability to write to Amazon S3 and download locally
+<em>Use the DynamoDB on-demand backup capability to write to Amazon S3 and download locally</em></li>
+<li>This option is not feasible for the given use-case. DynamoDB has two built-in backup methods (On-demand, Point-in-time recovery) that write to Amazon S3, but you will not have access to the S3 buckets that are used for these backups.<br />
+<strong>Use Hive with Amazon EMR to export your data to an S3 bucket and download locally</strong></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

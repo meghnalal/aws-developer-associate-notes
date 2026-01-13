@@ -1,0 +1,1045 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Security/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>VPC - AWS Developer Associate Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AWS Developer Associate Notes" class="md-header__button md-logo" aria-label="AWS Developer Associate Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AWS Developer Associate Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              VPC
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AWS Developer Associate Notes" class="md-nav__button md-logo" aria-label="AWS Developer Associate Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AWS Developer Associate Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS Developer Associate Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API_Gateway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Gateway
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AWS_Storage_Extra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS Storage Extra
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CloudFormation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS CloudFormation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DynamoDB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DynamoDB
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../EC2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EC2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../EC2_3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EC2 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Encryption/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Encryption
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lambda/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lambda
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RDS_Aurora/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RDS Aurora
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../S3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VPC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>VPC</h1>
+
+<div class="admonition example">
+<p class="admonition-title">Topics according to exam</p>
+<p>For AWS Developer exam: the main thing to know is:</p>
+<ul>
+<li>Not many questions on the developer one</li>
+</ul>
+<p>For AWS Solution Architect exam: the main thing to know is:</p>
+<ul>
+<li>Very important for Solution Architect</li>
+<li>Transit Gateway</li>
+<li>Virtual Private Gateway</li>
+<li>NAT </li>
+<li>Direct connect </li>
+</ul>
+</div>
+<p><strong><span style="color: #0057FF;">CIDR (Classless Inter-Domain Routing)</span></strong></p>
+<p>IP address allocation method <br />
+<code>0.0.0.0/0</code> → all IPs</p>
+<p><strong>Base IP:</strong><br />
+Represents IP contained in range: <code>10.0.0.0</code></p>
+<p><strong>Subnet Mask:</strong><br />
+Defines <code>/8</code>, <code>/16</code>, <code>/24</code>, <code>/32</code></p>
+<p><strong>CIDR IP Count:</strong></p>
+<ul>
+<li><code>/32</code> → 1 IP  </li>
+<li><code>/31</code> → 2 IPs  </li>
+<li><code>/30</code> → 4 IPs  </li>
+<li><code>/29</code> → 8 IPs  </li>
+<li><code>/28</code> → 16 IPs  </li>
+<li><code>/27</code> → 32 IPs  </li>
+<li><code>/26</code> → 64 IPs  </li>
+<li><code>/0</code> → all IPs</li>
+</ul>
+<hr />
+<p><strong><span style="color: #0057FF;">Public vs Private IP</span></strong></p>
+<p><strong>Private IP:</strong></p>
+<ul>
+<li>Local network only  </li>
+<li>No internet routing  </li>
+<li>Need NAT for internet access  </li>
+<li>IP address used inside private network (home, office, LAN)  </li>
+<li>Can only allow certain values   </li>
+<li>AWS default VPC <code>/16</code>  </li>
+<li>Home network <code>/16</code></li>
+</ul>
+<p><strong>Public IP:</strong></p>
+<ul>
+<li>Global   </li>
+<li>Globally unique  </li>
+<li>Internet routing   </li>
+<li>Assigned by ISP  </li>
+<li>No NAT needed  </li>
+<li>Example: <code>8.8.8.8</code> (Google DNS)</li>
+</ul>
+<hr />
+<p><strong><span style="color: #0057FF;">Default VPC</span></strong></p>
+<ul>
+<li>New instances are launched in default VPC   </li>
+<li>Default VPC has internet connectivity  </li>
+<li>All instances inside have public IPv4 address </li>
+</ul>
+<hr />
+<p><strong><span style="color: #0057FF;">VPC (Virtual Private Cloud)</span></strong></p>
+<p>Your own isolated network within AWS where you can launch resources</p>
+<p><strong>Core VPC Components:</strong></p>
+<p><strong>CIDR Block:</strong></p>
+<ul>
+<li>You define an IP address range with CIDR</li>
+</ul>
+<p><strong>Subnet:</strong></p>
+<ul>
+<li>These divide VPC into smaller networks - each network exists in a single Availability Zone and gets a portion of the CIDR range   </li>
+<li><strong>Public subnet</strong> has direct internet access via Internet Gateway </li>
+</ul>
+<p><strong>Public subnets need three things:</strong></p>
+<ol>
+<li>Internet Gateway attached to the VPC  </li>
+<li>A route to the IGW (<code>0.0.0.0/0</code>)  </li>
+<li>Public IP or Elastic IP on instances</li>
+</ol>
+<p><strong>Private subnets:</strong></p>
+<ul>
+<li>Don't have internet access   </li>
+<li>Private subnets needing internet access require:  </li>
+<li>NAT Gateway in a public subnet  </li>
+<li>Appropriate routing</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Important</p>
+<p>AWS reserves 5 IPs in each subnet (first 4 and last 1)  </p>
+<p>If you need 29 IP addresses: use <code>/27</code> (32 IP addresses, 32 – 5 = 27 &lt; 29)</p>
+</div>
+<hr />
+<p><strong><span style="color: #0057FF;">Route Table</span></strong></p>
+<ul>
+<li>Rules where network traffic is directed   </li>
+<li>Each subnet must be associated with one route table    </li>
+<li>But one route table can be associated with multiple subnets </li>
+</ul>
+<p>Each table has:
+* <strong>Destination</strong> - IP range to reach
+* <strong>Target</strong> - where to send traffic</p>
+<p>Most specific routing takes priority</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Destination</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10.0.0.0/16</td>
+<td>local</td>
+</tr>
+<tr>
+<td>0.0.0.0/0</td>
+<td>igw-xxxxx</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Traffic going to <code>10.0.0.0/16</code> stays within the VPC (local)  </li>
+<li>Traffic going to <strong>any other destination</strong> (<code>0.0.0.0/0</code> means "everything else") goes to the IGW</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Important</p>
+<p>If you need internet connectivity, then IGW and NAT Gateway become essential components for your architecture.</p>
+</div>
+<hr />
+<p><strong><span style="color: #0057FF;">Internet Gateway (IGW)</span></strong></p>
+<ul>
+<li>Allows communication between resources in VPC and internet   </li>
+<li>One IGW per VPC   </li>
+<li>Resources in public subnet need <strong>both IGW and route table</strong></li>
+</ul>
+<hr />
+<p><strong><span style="color: #0057FF;">Bastion Host</span></strong></p>
+<p>SSH to Public Subnet EC2 (The Bastion Host)<br />
+Then Bastion SSH to private subnet EC2</p>
+<hr />
+<p><strong><span style="color: #0057FF;">NAT Gateway</span></strong></p>
+<ul>
+<li>Enables instances in private subnet to access the internet   </li>
+<li>High availability NAT Gateway in multi-AZs  </li>
+<li>Flow: Private Subnet → NAT Gateway → Internet Gateway  </li>
+<li>No security group to manage  </li>
+<li>Deploy multiple NAT Gateways in multiple AZs for redundancy</li>
+</ul>
+<hr />
+<p><strong><span style="color: #0057FF;">NAT Instance (outdated but still in exam)</span></strong></p>
+<ul>
+<li>EC2 instances you manage yourself in public subnet   </li>
+<li>Need to manage Security Groups   </li>
+<li>Private subnets talk to it   </li>
+<li>Must have Elastic IP attached (EIP)  </li>
+<li>Route traffic configured from private subnet </li>
+</ul>
+<hr />
+<p><strong><span style="color: #0057FF;">Security</span></strong></p>
+<p><strong>Security Groups:</strong></p>
+<ul>
+<li>Stateful - return traffic automatically allowed  </li>
+<li>At instance level  </li>
+<li>Allow rules only</li>
+</ul>
+<p><strong>Network ACL (NACL):</strong></p>
+<ul>
+<li>Subnet level  </li>
+<li>Firewall at the subnet level  </li>
+<li>Stateless - must specify both inbound and outbound rules   </li>
+<li>Number defines priority: Rule 100 ALLOW &gt; Rule 200 DENY   </li>
+<li>Great way to block specific IP addresses</li>
+</ul>
+<hr />
+<p><strong><span style="color: #0057FF;">VPC Peering</span></strong></p>
+<p>VPC ←→ VPC (AWS only, cloud network)</p>
+<ul>
+<li>Connects two VPCs using private IP addresses - AWS network   </li>
+<li><strong>Non-transitive:</strong> If A peers with B, and B peers with C, A cannot reach C  </li>
+<li>Works across regions and accounts</li>
+</ul>
+<div class="admonition question">
+<p class="admonition-title">Exam Scenario</p>
+<p>"Connect two VPCs in different regions for disaster recovery" → <strong>VPC Peering</strong></p>
+</div>
+<hr />
+<p><strong><span style="color: #0057FF;">Transit Gateway</span></strong></p>
+<p><code>Hybrid ←→ VPC and VPC ←→ VPC</code></p>
+<ul>
+<li>Connects multiple <strong>VPCs and on-premises</strong> networks   </li>
+<li>Ideal when connecting 3+ VPCs  </li>
+<li>Transit Gateway handles all routing   </li>
+<li>No private physical connection needed</li>
+</ul>
+<p><strong>Examples:</strong></p>
+<div class="admonition info">
+<p class="admonition-title">Flow</p>
+<ul>
+<li>On-Premises ──VPN──→ Transit Gateway ──→ Multiple VPCs, Multiple Accounts  </li>
+<li>On-Premises ──Direct Connect──→ Transit Gateway ──→ Multiple VPCs, Multiple Accounts  </li>
+<li>Account A Transit Gateway → Account B VPC attachment to A → Account C VPC attachment to A</li>
+</ul>
+</div>
+<hr />
+<p><strong><span style="color: #0057FF;">VPN Connection (Site-to-Site)</span></strong></p>
+<p><code>Hybrid ←→ VPC Only</code></p>
+<p>An <strong>encrypted connection between your on-premises network and AWS</strong> over the internet.</p>
+<ul>
+<li>Connects on-prem network to AWS over the internet using IPSec  </li>
+<li>You need Virtual Private Gateway on AWS side and Customer Gateway on your side   </li>
+<li>Bandwidth limited  </li>
+<li>Dependent on internet connection quality  </li>
+<li>Setup time: Hours or days  </li>
+<li>Cheaper than Transit Gateway</li>
+</ul>
+<div class="admonition question">
+<p class="admonition-title">Exam Scenario</p>
+<p>"Company needs to quickly connect their data center to AWS with encryption" → <strong>Site-to-Site VPN</strong></p>
+</div>
+<p><strong>Connection Types:</strong></p>
+<p><strong>Connect to 1 VPC - Virtual Private Gateway:</strong>
+<div class="highlight"><pre><span></span><code>On-Prem (Customer Gateway) → VPN → Virtual Private Gateway (VGW) → Single VPC
+</code></pre></div></p>
+<p><strong>Connect many VPCs - Transit Gateway:</strong>
+<div class="highlight"><pre><span></span><code>On-Prem → VPN → Transit Gateway → Many VPCs (even across accounts)
+</code></pre></div></p>
+<p><strong>Complex network security - Software VPN:</strong>
+<div class="highlight"><pre><span></span><code>On-Prem → VPN (IPSec or SD-WAN) → EC2 VPN Appliance → VPC
+</code></pre></div></p>
+<hr />
+<p><strong><span style="color: #0057FF;">Direct Connect</span></strong></p>
+<p><code>Hybrid ←→ VPC Only</code></p>
+<ul>
+<li>Dedicated physical connection from on-prem to AWS   </li>
+<li>Weeks to set up   </li>
+<li>Bypasses the public internet entirely  </li>
+<li>Best for 1 or 2 VPCs</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Important</p>
+<p>Does <strong>not encrypt traffic by default</strong> → Use VPN over Direct Connect for encryption</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Exam Scenario</p>
+<p>"Company transfers 500TB monthly and needs consistent performance" → <strong>Direct Connect</strong></p>
+</div>
+<p><strong>Direct Connect Gateway:</strong> If you want to setup Direct Connect to one or more VPCs in many different regions (same account)</p>
+<p><strong>Connection Types:</strong></p>
+<p><strong>Connect to 1 VPC - Virtual Private Gateway:</strong>
+<div class="highlight"><pre><span></span><code>On-Prem Router → Direct Connect → DX Router → Private Virtual Interface (VIF) → Virtual Private Gateway (VGW) → VPC
+</code></pre></div></p>
+<p><strong>Connect many VPCs - Transit Gateway:</strong>
+<div class="highlight"><pre><span></span><code>On-Prem Router → Direct Connect → DX Router → Transit Virtual Interface (VIF) → Direct Connect Gateway → Transit Gateway → Many VPCs
+</code></pre></div></p>
+<hr />
+<p><strong><span style="color: #0057FF;">VPN over Direct Connect</span></strong></p>
+<p>Hybrid ←→ VPC Only</p>
+<p>In case Direct Connect fails, you can set up a backup Direct Connect or Site-to-Site VPN</p>
+<div class="admonition question">
+<p class="admonition-title">Exam Scenario</p>
+<p>"Company needs dedicated connection with end-to-end encryption" → <strong>VPN over Direct Connect</strong></p>
+</div>
+<hr />
+<p><strong><span style="color: #0057FF;">VPC Endpoints</span></strong></p>
+<p><code>Private VPC ←→ AWS Services</code></p>
+<p><strong>You can connect to AWS services using private network from your subnet</strong><br />
+No need for IGW or NAT Gateway</p>
+<p>Allows private connection to AWS services without using the internet</p>
+<p><strong>Gateway Endpoints:</strong></p>
+<ul>
+<li>Work with S3 and DynamoDB  </li>
+<li>Free  </li>
+<li>Gateway Endpoints don't work from on-premises networks connected via VPN or Direct Connect - they only work from within the VPC  </li>
+<li>Gateway Endpoints don't work across VPC peering connections or <strong>on-prem traffic</strong></li>
+</ul>
+<p><strong>Interface Endpoint (PrivateLink):</strong></p>
+<ul>
+<li>Use ENI (Elastic Network Interface)  </li>
+<li>Work with many AWS services  </li>
+<li>Not free  </li>
+<li>Preferred for access from on-premises or different VPC or different region</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Example: Lambda + SNS</p>
+<p>You have Lambda functions in a private subnet that need to call SNS to send notifications. Your options:</p>
+<ul>
+<li>Add a NAT Gateway ($0.045/hour + data transfer costs)  </li>
+<li>Add an Interface Endpoint for SNS ($0.01/hour + data transfer costs)  </li>
+<li>Interface Endpoint is actually cheaper here!</li>
+</ul>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Example: On-Premises + S3</p>
+<p>Your on-premises data center connects to AWS via Direct Connect. You want to access S3 privately without going over the internet.</p>
+<p><strong>With Gateway Endpoint:</strong> ❌ Won't work. On-premises traffic can't use Gateway Endpoints.</p>
+<p><strong>With Interface Endpoint:</strong> ✅ Works perfectly. On-premises systems can resolve the Interface Endpoint's private IP and access S3 over Direct Connect.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Important: VPC Peering</p>
+<p>The application in VPC-A <strong>cannot</strong> use VPC-B's Gateway Endpoint for S3. Each VPC needs its own Gateway Endpoint.</p>
+<p><strong>With Interface Endpoints:</strong> You can configure it to be accessible from peered VPCs (though you need to set up specific configurations with Route 53 and security groups).</p>
+</div>
+<hr />
+<p><strong><span style="color: #0057FF;">AWS VPN CloudHub</span></strong></p>
+<p>CloudHub allows A ↔ B ↔ C to communicate with each other through AWS, not only to the VPC.</p>
+<ul>
+<li>Used for multiple <strong>on-premises</strong> branch offices only  </li>
+<li>You already use <strong>VGW-based VPNs</strong></li>
+</ul>
+<hr />
+<p><strong><span style="color: #0057FF;">Lambda in VPC Accessing DynamoDB</span></strong></p>
+<p>DynamoDB is a public service</p>
+<p><strong>Option 1:</strong>
+<div class="highlight"><pre><span></span><code>Private subnet Lambda in VPC → Public subnet NAT → Public subnet IGW → DynamoDB
+</code></pre></div></p>
+<p><strong>Option 2 (Better):</strong>
+<div class="highlight"><pre><span></span><code>Private subnet Lambda in VPC → Deploy VPC Gateway Endpoint → DynamoDB
+</code></pre></div></p>
+<hr />
+<p><strong><span style="color: #0057FF;">VPC Flow Logs</span></strong></p>
+<p>Capture info about IP Traffic <br />
+Helps monitor and troubleshoot connectivity issues </p>
+<p><strong>Look at ACTION field:</strong></p>
+<p><strong>Incoming request:</strong></p>
+<ul>
+<li>Outbound/Inbound REJECT → NACL or Security Group  </li>
+<li>Inbound ACCEPT, Outbound REJECT → NACL  </li>
+<li>Outbound ACCEPT, Inbound REJECT → NACL</li>
+</ul>
+<p><strong>Flow Log Destinations:</strong></p>
+<ul>
+<li>VPC Logs → CloudWatch Logs → CloudWatch Insights  </li>
+<li>VPC Logs → CloudWatch Logs → CloudWatch Alarm  </li>
+<li>VPC Logs → S3 Bucket → Amazon Athena</li>
+</ul>
+<hr />
+<p><strong><span style="color: #0057FF;">VPN Connection Components</span></strong></p>
+<p><strong>Virtual Private Gateway (VGW):</strong></p>
+<ul>
+<li>The <strong>VPN endpoint on the AWS side</strong>  </li>
+<li>Used for Site-to-Site VPN</li>
+</ul>
+<p><strong>Customer Gateway (CGW):</strong></p>
+<ul>
+<li>The <strong>VPN endpoint on your side (customer side)</strong></li>
+</ul>
+<hr />
+<p><strong><span style="color: #0057FF;">Connectivity Summary</span></strong></p>
+<p><strong>On-Premises to AWS (Hybrid Connectivity):</strong></p>
+<ul>
+<li>Site-to-Site VPN  </li>
+<li>AWS Direct Connect (DX)  </li>
+<li>Types of Virtual Interfaces:  <ul>
+<li>Private VIF: Connects to VGW (for single VPC)  </li>
+<li>Transit VIF: Connects to Transit Gateway (for multiple VPCs)  </li>
+<li>Public VIF: For AWS public services (S3, DynamoDB, etc.)  </li>
+</ul>
+</li>
+<li>Direct Connect + VPN (Hybrid)  </li>
+<li>AWS VPN CloudHub</li>
+</ul>
+<p><strong>VPC to VPC Connectivity (Within AWS):</strong></p>
+<ul>
+<li>VPC Peering  </li>
+<li>Transit Gateway  </li>
+<li>AWS PrivateLink (VPC Endpoint Services)</li>
+</ul>
+<hr />
+<p><strong><span style="color: #0057FF;">Egress-Only Internet Gateway</span></strong></p>
+<ul>
+<li>Only for IPv6  </li>
+<li>Like NAT Gateway but for IPv6</li>
+</ul>
+<hr />
+<p><strong><span style="color: #0057FF;">Minimizing Egress Traffic Network Cost</span></strong></p>
+<p><strong>Egress traffic:</strong> Outbound traffic from AWS to outside<br />
+<strong>Ingress traffic:</strong> From outside to AWS (typically free)</p>
+<ul>
+<li>Keep as much traffic within AWS as possible  </li>
+<li>AWS charges data transfer out of AWS (egress) differently depending on whether your traffic stays in the same region or crosses regions  </li>
+<li>Same region transfers are cheaper</li>
+</ul>
+<hr />
+<p><strong><span style="color: #0057FF;">Network Protection on AWS</span></strong></p>
+<p>We've seen:</p>
+<ul>
+<li>Network Access Control Lists (NACLs)  </li>
+<li>Amazon VPC Security Groups  </li>
+<li>AWS WAF (protect against malicious requests)  </li>
+<li>AWS Shield &amp; AWS Shield Advanced  </li>
+<li>AWS Firewall Manager (to manage them across accounts)</li>
+</ul>
+<p><strong>Want to protect entire VPC in a sophisticated way?</strong></p>
+<p>→ <strong>AWS Network Firewall</strong></p>
+<ul>
+<li>Supports 1000s of rules  </li>
+<li>Advanced protection for entire VPC</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

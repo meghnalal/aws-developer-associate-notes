@@ -1,0 +1,1651 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../AWS_Storage_Extra/">
+      
+      
+        <link rel="next" href="../DynamoDB/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>AWS CloudFormation - AWS Developer Associate Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#aws-cloudformation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AWS Developer Associate Notes" class="md-header__button md-logo" aria-label="AWS Developer Associate Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AWS Developer Associate Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              AWS CloudFormation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AWS Developer Associate Notes" class="md-nav__button md-logo" aria-label="AWS Developer Associate Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AWS Developer Associate Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS Developer Associate Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API_Gateway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Gateway
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AWS_Storage_Extra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS Storage Extra
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS CloudFormation
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS CloudFormation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#template-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Template Components
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Template Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resources
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resource-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resource Syntax
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameter-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameter Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#referencing-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Referencing Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mappings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mappings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mappings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-mappings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Mappings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#outputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Outputs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Outputs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#output-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output Syntax
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#importing-outputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Importing Outputs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conditions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Conditions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defining-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Defining Conditions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Conditions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#intrinsic-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Intrinsic Functions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Intrinsic Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#condition-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Condition Functions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stack-updates-and-deletion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stack Updates and Deletion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stack Updates and Deletion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#updating-stacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Updating Stacks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cloudformation-rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CloudFormation Rollback
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CloudFormation Rollback">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stack-creation-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stack Creation Failures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stack-update-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stack Update Failures
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cloudformation-stacksets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CloudFormation StackSets
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CloudFormation StackSets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-stacksets-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How StackSets Work
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DynamoDB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DynamoDB
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../EC2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EC2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../EC2_3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EC2 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Encryption/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Encryption
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lambda/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lambda
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RDS_Aurora/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RDS Aurora
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../S3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../VPC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VPC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#template-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Template Components
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Template Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resources
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resource-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resource Syntax
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameter-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameter Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#referencing-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Referencing Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mappings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mappings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mappings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-mappings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Mappings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#outputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Outputs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Outputs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#output-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output Syntax
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#importing-outputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Importing Outputs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conditions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Conditions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defining-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Defining Conditions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Conditions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#intrinsic-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Intrinsic Functions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Intrinsic Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#condition-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Condition Functions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stack-updates-and-deletion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stack Updates and Deletion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stack Updates and Deletion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#updating-stacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Updating Stacks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cloudformation-rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CloudFormation Rollback
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CloudFormation Rollback">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stack-creation-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stack Creation Failures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stack-update-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stack Update Failures
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cloudformation-stacksets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CloudFormation StackSets
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CloudFormation StackSets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-stacksets-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How StackSets Work
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="aws-cloudformation">AWS CloudFormation</h1>
+<h2 id="overview">Overview</h2>
+<p>AWS CloudFormation allows you to model and provision AWS infrastructure using template files. The workflow is:
+<div class="highlight"><pre><span></span><code>Template → Upload to S3 Bucket → Reference in CloudFormation → Create Stack → Resources Created
+</code></pre></div></p>
+<hr />
+<h2 id="template-components">Template Components</h2>
+<h3 id="core-structure">Core Structure</h3>
+<p>CloudFormation templates consist of several key components:</p>
+<div class="admonition example">
+<p class="admonition-title">📝 Template Components</p>
+<ul>
+<li><strong>AWSTemplateFormatVersion</strong>: Specifies the template format version (capability declaration)</li>
+<li><strong>Description</strong>: Comments about the template's purpose</li>
+<li><strong>Resources</strong> (MANDATORY): AWS resources to be created</li>
+<li><strong>Parameters</strong>: Dynamic inputs for the template</li>
+<li><strong>Mappings</strong>: Static variables for the template</li>
+<li><strong>Outputs</strong>: References to created resources that can be exported</li>
+<li><strong>Conditions</strong>: Logic to conditionally create resources</li>
+</ul>
+</div>
+<hr />
+<h2 id="resources">Resources</h2>
+<div class="admonition info">
+<p class="admonition-title">Information</p>
+<p>Resources are the core building blocks of your CloudFormation template. They declare the AWS services you want to create and can reference each other.</p>
+</div>
+<h3 id="resource-syntax">Resource Syntax</h3>
+<p>Resources follow this naming convention:
+<div class="highlight"><pre><span></span><code>Service-Provider::Service-Name::Data-Type-Name
+</code></pre></div></p>
+<p><strong>Examples:</strong>
+- <code>AWS::EC2::Subnet</code>
+- <code>AWS::EC2::Instance</code>
+- <code>AWS::RDS::DBInstance</code></p>
+<div class="admonition tip">
+<p class="admonition-title">Tips</p>
+<ul>
+<li>You can create a dynamic number of resources</li>
+<li>If a service isn't available, use <strong>CloudFormation Custom Resources</strong> as a workaround</li>
+</ul>
+</div>
+<hr />
+<h2 id="parameters">Parameters</h2>
+<p>Parameters provide a way to input values into your CloudFormation template at runtime.</p>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
+<p>Use parameters when:
+- Configuration is likely to change in the future
+- You don't know the value at template creation time</p>
+</div>
+<h3 id="parameter-features">Parameter Features</h3>
+<p>Parameters are not limited to strings. You can specify:
+- <strong>Allowed Values</strong>: Constrain inputs to specific options
+- <strong>Default Values</strong>: Provide sensible defaults</p>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><span class="nt">Parameters</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">InstanceType</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">Type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">String</span>
+<span class="w">    </span><span class="nt">Default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">t2.micro</span>
+<span class="w">    </span><span class="nt">AllowedValues</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">t2.micro</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">t2.small</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">t2.medium</span>
+</code></pre></div></p>
+<h3 id="referencing-parameters">Referencing Parameters</h3>
+<p>Use the <code>!Ref</code> function (or <code>Fn::Ref</code>):
+<div class="highlight"><pre><span></span><code><span class="nt">InstanceType</span><span class="p">:</span><span class="w"> </span><span class="kt">!Ref</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InstanceTypeParameter</span>
+</code></pre></div></p>
+<div class="admonition note">
+<p class="admonition-title">Notes</p>
+<p>You use <code>!Ref</code> the same way for both parameters and resources:
+- <code>!Ref &lt;ParameterName&gt;</code>
+- <code>!Ref &lt;ResourceName&gt;</code></p>
+</div>
+<hr />
+<h2 id="mappings">Mappings</h2>
+<p>Mappings define fixed variables within your template, useful for differentiating between:
+- Environments (dev, prod)
+- Regions
+- AMI types</p>
+<div class="admonition example">
+<p class="admonition-title">📝 Key Points</p>
+<ul>
+<li>All values are hardcoded in mappings</li>
+<li>Use mappings when values can be deduced from variables like region, availability zone, or AWS account</li>
+<li>Use parameters when values need to be provided at runtime</li>
+</ul>
+</div>
+<h3 id="using-mappings">Using Mappings</h3>
+<p>Use <code>Fn::FindInMap</code> or <code>!FindInMap</code>:
+<div class="highlight"><pre><span></span><code><span class="kt">!FindInMap</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">MapName</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">TopLevelKey</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">SecondLevelKey</span><span class="p p-Indicator">]</span>
+</code></pre></div></p>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><span class="kt">!FindInMap</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">RegionMap</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="kt">!Ref</span><span class="w"> </span><span class="s">&quot;AWS::Region&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">HVM64</span><span class="p p-Indicator">]</span>
+</code></pre></div></p>
+<hr />
+<h2 id="outputs">Outputs</h2>
+<p>Outputs are optional values that can be exported and referenced by other stacks.</p>
+<div class="admonition info">
+<p class="admonition-title">Information</p>
+<p>Outputs are commonly used to export resource identifiers like security groups, VPC IDs, or subnet IDs that other stacks may need.</p>
+</div>
+<h3 id="output-syntax">Output Syntax</h3>
+<div class="highlight"><pre><span></span><code><span class="nt">Outputs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">StackSSHSecurityGroup</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">Description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Security Group for SSH access</span>
+<span class="w">    </span><span class="nt">Value</span><span class="p">:</span><span class="w"> </span><span class="kt">!Ref</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MySecurityGroup</span>
+<span class="w">    </span><span class="nt">Export</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">Name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SSHSecurityGroup</span>
+</code></pre></div>
+<h3 id="importing-outputs">Importing Outputs</h3>
+<p>Use <code>!ImportValue</code> to reference exported outputs:
+<div class="highlight"><pre><span></span><code><span class="nt">SecurityGroup</span><span class="p">:</span><span class="w"> </span><span class="kt">!ImportValue</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SSHSecurityGroup</span>
+</code></pre></div></p>
+<div class="admonition danger">
+<p class="admonition-title">Important</p>
+<p>You cannot delete a stack with exported outputs until all references to those outputs are removed from other stacks.</p>
+</div>
+<hr />
+<h2 id="conditions">Conditions</h2>
+<p>Conditions allow you to control resource creation based on logical evaluation.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tips</p>
+<p>Use conditions to create resources only in specific environments (dev/prod) or regions.</p>
+</div>
+<h3 id="defining-conditions">Defining Conditions</h3>
+<div class="highlight"><pre><span></span><code><span class="nt">Conditions</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">CreateProdResources</span><span class="p">:</span><span class="w"> </span><span class="kt">!Equals</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="kt">!Ref</span><span class="w"> </span><span class="nv">EnvType</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">prod</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+<h3 id="using-conditions">Using Conditions</h3>
+<div class="highlight"><pre><span></span><code><span class="nt">Resources</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">MyResource</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">Type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AWS::EC2::Instance</span>
+<span class="w">    </span><span class="nt">Condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CreateProdResources</span>
+</code></pre></div>
+<hr />
+<h2 id="intrinsic-functions">Intrinsic Functions</h2>
+<p>CloudFormation provides built-in functions for dynamic template behavior:</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Shorthand</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Fn::Ref</code></td>
+<td><code>!Ref</code></td>
+<td>Reference parameters or resources</td>
+</tr>
+<tr>
+<td><code>Fn::GetAtt</code></td>
+<td><code>!GetAtt</code></td>
+<td>Get attributes from resources (e.g., <code>!GetAtt EC2Instance.AvailabilityZone</code>)</td>
+</tr>
+<tr>
+<td><code>Fn::FindInMap</code></td>
+<td><code>!FindInMap</code></td>
+<td>Retrieve values from mappings</td>
+</tr>
+<tr>
+<td><code>Fn::ImportValue</code></td>
+<td><code>!ImportValue</code></td>
+<td>Import exported values from other stacks</td>
+</tr>
+<tr>
+<td><code>Fn::Base64</code></td>
+<td><code>!Base64</code></td>
+<td>Convert string to Base64 (useful for UserData)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="condition-functions">Condition Functions</h3>
+<ul>
+<li><code>Fn::And</code></li>
+<li><code>Fn::Equals</code></li>
+<li><code>Fn::If</code></li>
+<li><code>Fn::Not</code></li>
+<li><code>Fn::Or</code></li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">📝 GetAtt Example</p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="nt">AvailabilityZone</span><span class="p">:</span><span class="w"> </span><span class="kt">!GetAtt</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EC2Instance.AvailabilityZone</span>
+<span class="w">    </span><span class="nt">PublicIP</span><span class="p">:</span><span class="w"> </span><span class="kt">!GetAtt</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EC2Instance.PublicIp</span>
+<span class="w">    </span><span class="nt">PrivateDNS</span><span class="p">:</span><span class="w"> </span><span class="kt">!GetAtt</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EC2Instance.PrivateDnsName</span>
+</code></pre></div>
+<hr />
+<h2 id="stack-updates-and-deletion">Stack Updates and Deletion</h2>
+<h3 id="updating-stacks">Updating Stacks</h3>
+<div class="admonition note">
+<p class="admonition-title">Notes</p>
+<p>To update a template:
+1. Create a new version of the template
+2. Re-upload the template
+3. CloudFormation updates the stack with the changes</p>
+</div>
+<hr />
+<h2 id="cloudformation-rollback">CloudFormation Rollback</h2>
+<h3 id="stack-creation-failures">Stack Creation Failures</h3>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
+<p><strong>Default behavior</strong>: Everything rolls back (gets deleted) on failure</p>
+<p>You can disable automatic rollback to troubleshoot issues.</p>
+</div>
+<h3 id="stack-update-failures">Stack Update Failures</h3>
+<p>When a stack update fails, CloudFormation automatically rolls back to the last known working state.</p>
+<div class="admonition danger">
+<p class="admonition-title">Important</p>
+<p><strong>Rollback failures</strong> typically occur when:
+- Resources were manually changed outside of CloudFormation
+- The stack is in an inconsistent state
+- Manual intervention is required to resolve conflicts</p>
+</div>
+<hr />
+<h2 id="cloudformation-stacksets">CloudFormation StackSets</h2>
+<div class="admonition info">
+<p class="admonition-title">Information</p>
+<p>AWS CloudFormation StackSets extends stack functionality by enabling you to create, update, or delete stacks across <strong>multiple accounts and regions</strong> with a single operation.</p>
+</div>
+<h3 id="how-stacksets-work">How StackSets Work</h3>
+<ol>
+<li>Use an <strong>administrator account</strong> to define and manage a CloudFormation template</li>
+<li>The template becomes the basis for provisioning stacks</li>
+<li>Deploy to selected <strong>target accounts</strong> across specified <strong>regions</strong></li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Tips</p>
+<p>StackSets are ideal for:
+- Multi-account AWS Organizations setups
+- Standardized resource deployment across regions
+- Centralized governance and compliance</p>
+</div>
+<hr />
+<h2 id="best-practices">Best Practices</h2>
+<div class="admonition example">
+<p class="admonition-title">📝 Key Points</p>
+<ul>
+<li>Always use <strong>parameters</strong> for values that may change</li>
+<li>Use <strong>mappings</strong> for environment-specific or region-specific values</li>
+<li>Export commonly used resources via <strong>outputs</strong></li>
+<li>Implement <strong>conditions</strong> to manage environment-specific resources</li>
+<li>Enable <strong>termination protection</strong> on production stacks</li>
+<li>Use <strong>change sets</strong> to preview changes before applying them</li>
+<li>Tag your resources for better organization and cost tracking</li>
+</ul>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Questions to Keep in Mind</p>
+<ul>
+<li>Does this configuration need to be flexible? → Use <strong>parameters</strong></li>
+<li>Is this value fixed per environment/region? → Use <strong>mappings</strong></li>
+<li>Will other stacks need this resource? → Export via <strong>outputs</strong></li>
+<li>Should this only exist in certain environments? → Use <strong>conditions</strong></li>
+<li>How will I handle failures? → Plan your <strong>rollback strategy</strong></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
